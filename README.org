@@ -1,0 +1,52 @@
+* project-mode-line-tag.el
+
+Provides a global minor mode to display information about a buffer's
+project (a "project tag") in its mode line.
+
+A buffer's project tag is derived from either its =project.el= project's
+root directory (e.g. =bar= for =/code/foo/bar=) or, if present, a
+[[https://www.gnu.org/software/emacs/manual/html_node/elisp/Directory-Local-Variables.html][dir-local variable]] named =project-mode-line-tag= or =project-name=.
+
+* Installation
+
+If you use MELPA, an easy way to install this package is via
+=package-install=. Alternatively, download =project-mode-line-tag.el=,
+put it in your =load-path= and =require= it. Finally, use
+=(project-mode-line-tag-mode 1)= or =M-x project-mode-line-tag-mode= to
+turn on the provided minor mode.
+
+If you use both MELPA and =use-package=, you can use this, too:
+
+#+begin_src emacs-lisp
+(use-package project-mode-line-tag
+  :ensure
+  :config
+  (project-mode-line-tag-mode))
+#+end_src
+
+* Screenshot
+
+Showing 3 windows; from top to bottom:
+
+- Project tag =project-mode-line-tag= derived from its buffer's related
+  =project.el= project's root directory.
+
+- Project tag =foobar= derived from the =project-name= dir-local
+  variable that applies to its buffer.
+
+- None of the above, so no project tag.
+
+[[screenshots/project-mode-line-tag.png]]
+
+The face applied to the project tag and the format of how to display it
+in the mode line are fully customizable.
+
+* Related packages
+
+- Check out the [[https://github.com/fritzgrabo/cascading-dir-locals][cascading-dir-locals]] package if you want to use nested
+  dir-local variables.
+
+- The [[https://github.com/fritzgrabo/tab-bar-groups][tab-bar-groups]] package integrates with this package and applies
+  the current tab bar group's color to the project tag in the mode line.
+  You might want to use this if you use a [[https://github.com/fritzgrabo/tab-bar-groups#helper-functions-to-roll-your-own-tools]["one tab group per project"
+  workflow]].
