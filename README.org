@@ -21,7 +21,7 @@ If you use both MELPA and =use-package=, you can use this, too:
 (use-package project-mode-line-tag
   :ensure
   :config
-  (project-mode-line-tag-mode))
+  (project-mode-line-tag-mode 1))
 #+end_src
 
 * Screenshot
