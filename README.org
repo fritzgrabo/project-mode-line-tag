@@ -48,5 +48,5 @@ in the mode line are fully customizable.
 
 - The [[https://github.com/fritzgrabo/tab-bar-groups][tab-bar-groups]] package integrates with this package and applies
   the current tab bar group's color to the project tag in the mode line.
-  You might want to use this if you use a [[https://github.com/fritzgrabo/tab-bar-groups#helper-functions-to-roll-your-own-tools]["one tab group per project"
-  workflow]].
+  You might want to use this in combination with the [[https://github.com/fritzgrabo/project-tab-groups][project-tab-groups]]
+  package if you follow a "one tab group per project" workflow.
