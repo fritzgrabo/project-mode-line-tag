@@ -7,6 +7,11 @@ A buffer's project tag is derived from either its =project.el= project's
 root directory (e.g. =bar= for =/code/foo/bar=) or, if present, a
 [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Directory-Local-Variables.html][dir-local variable]] named =project-mode-line-tag= or =project-name=.
 
+In addition, if one of =project-mode-line-tag-template= or
+=project-name-template= is present, it is used as the format-string in a
+call to =format=. The format-string is expected to have a single ="%s"=
+sequence which will be substituted by the project tag.
+
 * Installation
 
 If you use MELPA, an easy way to install this package is via

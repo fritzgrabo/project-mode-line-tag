@@ -76,13 +76,17 @@ display.")
 
 (defun project-mode-line-tag--project-tag ()
   "Build project tag for the current buffer."
-  (or (and (boundp 'project-mode-line-tag) project-mode-line-tag)
-      (and (boundp 'project-name) project-name)
-      (when-let ((project-current (project-current)))
-        ;; Using obsolete function `project-roots` (vs `project-root`)
-        ;; on purpose here to maintain support for Emacs versions down
-        ;; to 25.1.
-        (file-name-nondirectory (directory-file-name (car (project-roots project-current)))))))
+  (when-let ((tag (or (and (boundp 'project-mode-line-tag) project-mode-line-tag)
+                      (and (boundp 'project-name) project-name)
+                      (when-let ((project-current (project-current)))
+                        ;; Using obsolete function `project-roots` (vs `project-root`)
+                        ;; on purpose here to maintain support for Emacs versions down
+                        ;; to 25.1.
+                        (file-name-nondirectory (directory-file-name (car (project-roots project-current)))))))
+             (tag-template (or (and (boundp 'project-mode-line-tag-template) project-mode-line-tag-template)
+                               (and (boundp 'project-name-template) project-name-template)
+                               "%s")))
+    (format tag-template tag)))
 
 (defun project-mode-line-tag ()
   "Compute project tag string to display in the mode line."
