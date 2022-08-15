@@ -9,14 +9,16 @@ root directory (e.g. =bar= for =/code/foo/bar=) or, if present, a
 
 In addition, if one of =project-mode-line-tag-template= or
 =project-name-template= is present, it is used as the format-string in a
-call to =format=. The format-string is expected to have a single ="%s"=
-sequence which will be substituted by the project tag.
+call to =format= to further customize the project tag. The format-string
+is expected to have a single =%s= sequence which will be substituted
+with the current project tag. This can be useful if you want to have
+all projects in a directory share a common prefix, for example.
 
 * Installation
 
 If you use MELPA, an easy way to install this package is via
-=package-install=. Alternatively, download =project-mode-line-tag.el=,
-put it in your =load-path= and =require= it. Finally, use
+=package-install=. Alternatively, download =project-mode-line-tag.el=, put
+it in your =load-path= and =require= it. Finally, use
 =(project-mode-line-tag-mode 1)= or =M-x project-mode-line-tag-mode= to
 turn on the provided minor mode.
 
@@ -36,15 +38,15 @@ Showing 3 windows; from top to bottom:
 - Project tag =project-mode-line-tag= derived from its buffer's related
   =project.el= project's root directory.
 
-- Project tag =foobar= derived from the =project-name= dir-local
-  variable that applies to its buffer.
+- Project tag =foobar= derived from the =project-name= dir-local variable
+  that applies to its buffer.
 
 - None of the above, so no project tag.
 
 [[screenshots/project-mode-line-tag.png]]
 
-The face applied to the project tag and the format of how to display it
-in the mode line are fully customizable.
+The face applied to the project tag and the format of how to display
+it in the mode line are fully customizable.
 
 * Related packages
 
@@ -52,6 +54,7 @@ in the mode line are fully customizable.
   dir-local variables.
 
 - The [[https://github.com/fritzgrabo/tab-bar-groups][tab-bar-groups]] package integrates with this package and applies
-  the current tab bar group's color to the project tag in the mode line.
-  You might want to use this in combination with the [[https://github.com/fritzgrabo/project-tab-groups][project-tab-groups]]
-  package if you follow a "one tab group per project" workflow.
+  the current tab bar group's color to the project tag in the mode
+  line. You might want to use this in combination with the
+  [[https://github.com/fritzgrabo/project-tab-groups][project-tab-groups]] package if you follow a "one tab group per
+  project" workflow.
