@@ -74,15 +74,21 @@ display.")
     (font-lock-append-text-property 0 (length project-tag) 'face 'project-mode-line-tag-project-tag project-tag)
     project-tag))
 
+(defvar-local project-mode-line-tag--not-in-project nil
+  "Is this buffer not in a project.")
+
 (defun project-mode-line-tag--project-tag ()
   "Build project tag for the current buffer."
-  (when-let ((tag (or (and (boundp 'project-mode-line-tag) project-mode-line-tag)
-                      (and (boundp 'project-name) project-name)
-                      (when-let ((project-current (project-current)))
-                        ;; Using obsolete function `project-roots` (vs `project-root`)
-                        ;; on purpose here to maintain support for Emacs versions down
-                        ;; to 25.1.
-                        (file-name-nondirectory (directory-file-name (car (project-roots project-current)))))))
+  (when-let ((tag (and
+                   (not project-mode-line-tag--not-in-project)
+                   (or (and (boundp 'project-mode-line-tag) project-mode-line-tag)
+                       (and (boundp 'project-name) project-name)
+                       (if-let ((project-current (project-current)))
+                           ;; Using obsolete function `project-roots` (vs `project-root`)
+                           ;; on purpose here to maintain support for Emacs versions down
+                           ;; to 25.1.
+                           (file-name-nondirectory (directory-file-name (car (project-roots project-current))))
+                         (setq-local project-mode-line-tag--not-in-project t)))))
              (tag-template (or (and (boundp 'project-mode-line-tag-template) project-mode-line-tag-template)
                                (and (boundp 'project-name-template) project-name-template)
                                "%s")))
