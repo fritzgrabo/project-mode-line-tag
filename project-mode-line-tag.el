@@ -79,10 +79,13 @@ display.")
   (when-let ((tag (or (and (boundp 'project-mode-line-tag) project-mode-line-tag)
                       (and (boundp 'project-name) project-name)
                       (when-let ((project-current (project-current)))
-                        ;; Using obsolete function `project-roots` (vs `project-root`)
-                        ;; on purpose here to maintain support for Emacs versions down
-                        ;; to 25.1.
-                        (file-name-nondirectory (directory-file-name (car (project-roots project-current)))))))
+                        (or
+                         ;; Emacs 29.
+                         (and (fboundp 'project-name) (project-name project-current))
+                         ;; Using obsolete function `project-roots` (vs `project-root`)
+                         ;; on purpose here to maintain support for Emacs versions down
+                         ;; to 25.
+                         (file-name-nondirectory (directory-file-name (car (project-roots project-current))))))))
              (tag-template (or (and (boundp 'project-mode-line-tag-template) project-mode-line-tag-template)
                                (and (boundp 'project-name-template) project-name-template)
                                "%s")))

@@ -3,9 +3,11 @@
 Provides a global minor mode to display information about a buffer's
 project (a "project tag") in its mode line.
 
-A buffer's project tag is derived from either its =project.el= project's
-root directory (e.g. =bar= for =/code/foo/bar=) or, if present, a
-[[https://www.gnu.org/software/emacs/manual/html_node/elisp/Directory-Local-Variables.html][dir-local variable]] named =project-mode-line-tag= or =project-name=.
+To derive a buffer's project tag, we first look for [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Directory-Local-Variables.html][dir-local
+variables]] named =project-mode-line-tag= or =project-name=. If none of
+these are set, we call the =project-name= function if it exists (Emacs
+29), and fall back to the project’s directory name (e.g. =bar= for
+=/code/foo/bar=) otherwise.
 
 In addition, if one of =project-mode-line-tag-template= or
 =project-name-template= is present, it is used as the format-string in a
