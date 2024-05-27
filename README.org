@@ -1,3 +1,6 @@
+⚠️ *Emacs 30 [[https://git.savannah.gnu.org/cgit/emacs.git/commit/etc/NEWS?id=238292d6571402e93d4f7886baac9853011b36f][adds the project-mode-line facility]], which renders this
+package obsolete.*
+
 * project-mode-line-tag.el
 
 Provides a global minor mode to display information about a buffer's
